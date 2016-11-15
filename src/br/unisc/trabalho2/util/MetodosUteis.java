@@ -68,4 +68,57 @@ public class MetodosUteis {
         }  
         return binary.toString();  
     }
+    
+    public static String convertBinaryStringToString(String string){
+        char[] chars = string.toCharArray();
+        char[] transcoded = new char[(chars.length / 9)+1];
+
+        //for each character (plus one for spacing)
+        for (int j = 0; j < chars.length; j+=9) {
+            int idx = 0;
+            int sum = 0;
+
+            //for each bit in reverse
+            for (int i = 7; i>= 0; i--) {
+                if (chars[i+j] == '1') {
+                    sum += 1 << idx;
+                }
+                idx++;
+            }
+            transcoded[j/9] = (char) sum;
+        }
+        return new String(transcoded);
+    }
+    
+    public static String converteBinarioParaAscii(StringBuilder arrayBinary) {
+        String[] ss;
+        if (arrayBinary.toString().length() < 8) {
+                ss = fazSplitEmString(arrayBinary.toString(), arrayBinary.toString().length());
+        } else {
+                ss = fazSplitEmString(arrayBinary.toString(), 8);
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < ss.length; i++) {
+                sb.append((char) Integer.parseInt(ss[i], 2));
+        }
+        return sb.toString();
+    }
+    
+    private static String[] fazSplitEmString(String s, int interval) {
+        int arrayLength = (int) Math.ceil(((s.length() / (double) interval)));
+        String[] result = new String[arrayLength];
+
+        int j = 0;
+        int lastIndex = result.length - 1;
+        for (int i = 0; i < lastIndex; i++) {
+                result[i] = s.substring(j, j + interval);
+                j += interval;
+        } // Add the last bit
+        result[lastIndex] = s.substring(j);
+
+        return result;
+    }
+    
+    
 }
