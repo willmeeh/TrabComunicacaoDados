@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 public class TelaPrincipal extends javax.swing.JFrame {
 
     TelaPrincipalAction action = new TelaPrincipalAction();
-    
+
     MetodosUteis util = new MetodosUteis();
 
     TecnicaCrc crc = new TecnicaCrc();
@@ -23,13 +23,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     public TelaPrincipal() {
         initComponents();
-        
+
         //faz uma quebra de linha ao chegar na borda direita da area de texto
         msgEmBits.setLineWrap(true);
         txtPalavra1Checksum.setLineWrap(true);
         txtPalavra2Checksum.setLineWrap(true);
 
-        
         this.setTitle("Detecção e correção de erros na camada de enlace do MR-OSI");
     }
 
@@ -691,9 +690,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void abrirFormCrc(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_abrirFormCrc
-        
-        
-        
+
+
     }//GEN-LAST:event_abrirFormCrc
 
     private void tfMensagemAtualizaInputBinario(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfMensagemAtualizaInputBinario
@@ -780,22 +778,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_tfPalavra1CHAtualizaInputBinario
 
     private void executarChecksumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_executarChecksumActionPerformed
-        
+
         String palavra1Checksum = txtPalavra1Checksum.getText();
         String palavra2Checksum = txtPalavra2Checksum.getText();
-        
+
         //faz soma das palavras
         String resultSomaChecksum = checksum.fazSoma(palavra1Checksum, palavra2Checksum);
         txtResultadoSomaChecksum.setText(resultSomaChecksum);
         //inverte os bits do resultado da soma
         String bitsInvertidosCheckSum = checksum.inverteResultSoma(resultSomaChecksum);
         txtBitsInvertidos.setText(bitsInvertidosCheckSum);
-        
+
         //Concatena a palavra 1 com a palavra 2 e com o resultado da soma 
         //da p1 com p2, o qual esta com seus bits invertidos
-        String msgSentChecksum = palavra1Checksum+palavra2Checksum+bitsInvertidosCheckSum;
+        String msgSentChecksum = palavra1Checksum + palavra2Checksum + bitsInvertidosCheckSum;
         txtMsgEnviadaCheckSum.setText(msgSentChecksum);
-        
+
         checksum.fazSoma2(palavra1Checksum, palavra2Checksum);
     }//GEN-LAST:event_executarChecksumActionPerformed
 

@@ -1,4 +1,3 @@
-
 package br.unisc.trabalho2.main;
 
 import br.unisc.trabalho2.telas.TelaPrincipal;
@@ -11,11 +10,7 @@ import java.util.ArrayList;
 public class Trabalho2ComunicacaoDados {
 
     public static void main(String[] args) {
-        
-        
-        
 
-        
 //        
 //        ArrayList<String> listaDividendos = new ArrayList<>();
 //        
@@ -32,10 +27,6 @@ public class Trabalho2ComunicacaoDados {
 //        for(String list : listaDividendos){
 //            System.out.println(""+list);
 //        }
-
-        
     }
-    
-    
-     
+
 }
