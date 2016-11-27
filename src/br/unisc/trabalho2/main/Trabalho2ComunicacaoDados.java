@@ -1,5 +1,6 @@
 package br.unisc.trabalho2.main;
 
+import br.unisc.trabalho2.tecnicas.Hamming;
 import br.unisc.trabalho2.telas.TelaPrincipal;
 import java.util.ArrayList;
 
@@ -10,7 +11,8 @@ import java.util.ArrayList;
 public class Trabalho2ComunicacaoDados {
 
     public static void main(String[] args) {
-
+        Hamming a = new Hamming();
+        a.potenciadeDois(8);
 //        
 //        ArrayList<String> listaDividendos = new ArrayList<>();
 //        

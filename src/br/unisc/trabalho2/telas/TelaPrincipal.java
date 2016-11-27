@@ -117,6 +117,41 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel32 = new javax.swing.JLabel();
         pRed_Solomon = new javax.swing.JPanel();
         pHamming = new javax.swing.JPanel();
+        pCrc2 = new javax.swing.JPanel();
+        pInput4 = new javax.swing.JPanel();
+        tfMensagem3 = new javax.swing.JTextField();
+        jLabel34 = new javax.swing.JLabel();
+        jScrollPane21 = new javax.swing.JScrollPane();
+        msgEmBits3 = new javax.swing.JTextArea();
+        jLabel35 = new javax.swing.JLabel();
+        tfPolinomio3 = new javax.swing.JTextField();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        tfGrauPolinomio3 = new javax.swing.JTextField();
+        executarCrc1 = new javax.swing.JButton();
+        isSimularErro4 = new javax.swing.JCheckBox();
+        pOutput2 = new javax.swing.JPanel();
+        jScrollPane22 = new javax.swing.JScrollPane();
+        txtRestoXorTransmitido1 = new javax.swing.JTextArea();
+        jLabel38 = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        jScrollPane23 = new javax.swing.JScrollPane();
+        txtBitsEnviados1 = new javax.swing.JTextArea();
+        jLabel40 = new javax.swing.JLabel();
+        txtMe2 = new javax.swing.JPanel();
+        jLabel41 = new javax.swing.JLabel();
+        jScrollPane24 = new javax.swing.JScrollPane();
+        txtRestoXorRecebido2 = new javax.swing.JTextArea();
+        jLabel42 = new javax.swing.JLabel();
+        jScrollPane25 = new javax.swing.JScrollPane();
+        txtResultTransmissao2 = new javax.swing.JTextArea();
+        jLabel43 = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
+        jScrollPane26 = new javax.swing.JScrollPane();
+        txtMensagemRecebida2 = new javax.swing.JTextArea();
+        jScrollPane27 = new javax.swing.JScrollPane();
+        txtAsciiEnviado2 = new javax.swing.JTextArea();
+        jLabel45 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -660,15 +695,270 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Red_Solomon", pRed_Solomon);
 
+        pCrc2.setBackground(new java.awt.Color(126, 167, 176));
+
+        tfMensagem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfMensagem3ActionPerformed(evt);
+            }
+        });
+        tfMensagem3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfMensagem3AtualizaInputBinario(evt);
+            }
+        });
+
+        jLabel34.setText("Mensagem em ASCII");
+
+        msgEmBits3.setColumns(20);
+        msgEmBits3.setRows(5);
+        msgEmBits3.setText("111100101");
+        jScrollPane21.setViewportView(msgEmBits3);
+        msgEmBits.setAutoscrolls(false);
+
+        jLabel35.setText("Mensagem em bits");
+
+        tfPolinomio3.setText("101101");
+        tfPolinomio3.setToolTipText("Informe o polinomio em bits");
+        tfPolinomio3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfPolinomio3validaPolinomio(evt);
+            }
+        });
+
+        jLabel36.setText("Polinomio em Bits");
+
+        jLabel37.setText("Grau do polinomio");
+
+        tfGrauPolinomio3.setText("5");
+        tfGrauPolinomio3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfGrauPolinomio3validaGrauPolinomio(evt);
+            }
+        });
+
+        executarCrc1.setText("Executar");
+        executarCrc1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                executarCrc1ActionPerformed(evt);
+            }
+        });
+
+        isSimularErro4.setText("Simular Erro");
+
+        javax.swing.GroupLayout pInput4Layout = new javax.swing.GroupLayout(pInput4);
+        pInput4.setLayout(pInput4Layout);
+        pInput4Layout.setHorizontalGroup(
+            pInput4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pInput4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pInput4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfMensagem3)
+                    .addComponent(jScrollPane21, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
+                    .addComponent(tfPolinomio3)
+                    .addComponent(tfGrauPolinomio3)
+                    .addGroup(pInput4Layout.createSequentialGroup()
+                        .addGroup(pInput4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel34)
+                            .addComponent(jLabel35)
+                            .addComponent(jLabel36)
+                            .addComponent(jLabel37)
+                            .addGroup(pInput4Layout.createSequentialGroup()
+                                .addComponent(executarCrc1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(isSimularErro4)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        pInput4Layout.setVerticalGroup(
+            pInput4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pInput4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfMensagem3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addComponent(jLabel35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane21, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfPolinomio3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel37)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfGrauPolinomio3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pInput4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(executarCrc1)
+                    .addComponent(isSimularErro4))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        txtRestoXorTransmitido1.setColumns(20);
+        txtRestoXorTransmitido1.setRows(5);
+        jScrollPane22.setViewportView(txtRestoXorTransmitido1);
+
+        jLabel38.setText("Resto da operacao XOR");
+
+        jLabel39.setText("Bits enviados:");
+
+        txtBitsEnviados1.setColumns(20);
+        txtBitsEnviados1.setRows(5);
+        jScrollPane23.setViewportView(txtBitsEnviados1);
+
+        jLabel40.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel40.setText("Transmissor");
+
+        javax.swing.GroupLayout pOutput2Layout = new javax.swing.GroupLayout(pOutput2);
+        pOutput2.setLayout(pOutput2Layout);
+        pOutput2Layout.setHorizontalGroup(
+            pOutput2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pOutput2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pOutput2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane22, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
+                    .addComponent(jScrollPane23)
+                    .addGroup(pOutput2Layout.createSequentialGroup()
+                        .addGroup(pOutput2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel38)
+                            .addComponent(jLabel39)
+                            .addComponent(jLabel40))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        pOutput2Layout.setVerticalGroup(
+            pOutput2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pOutput2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel40)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane22, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel39)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane23, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel41.setText("Resto da operacao XOR");
+
+        txtRestoXorRecebido2.setColumns(20);
+        txtRestoXorRecebido2.setRows(5);
+        jScrollPane24.setViewportView(txtRestoXorRecebido2);
+
+        jLabel42.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel42.setText("Receptor");
+
+        txtResultTransmissao2.setColumns(20);
+        txtResultTransmissao2.setRows(5);
+        jScrollPane25.setViewportView(txtResultTransmissao2);
+
+        jLabel43.setText("Resultado da verificacao de erros");
+
+        jLabel44.setText("Mensagem Recebida");
+
+        txtMensagemRecebida2.setColumns(20);
+        txtMensagemRecebida2.setRows(5);
+        jScrollPane26.setViewportView(txtMensagemRecebida2);
+
+        txtAsciiEnviado2.setColumns(20);
+        txtAsciiEnviado2.setRows(5);
+        jScrollPane27.setViewportView(txtAsciiEnviado2);
+
+        jLabel45.setText("Mensagem decodificado para ASCII");
+
+        javax.swing.GroupLayout txtMe2Layout = new javax.swing.GroupLayout(txtMe2);
+        txtMe2.setLayout(txtMe2Layout);
+        txtMe2Layout.setHorizontalGroup(
+            txtMe2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(txtMe2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(txtMe2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane25, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                    .addComponent(jScrollPane24)
+                    .addComponent(jScrollPane26)
+                    .addComponent(jScrollPane27)
+                    .addGroup(txtMe2Layout.createSequentialGroup()
+                        .addGroup(txtMe2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel42)
+                            .addComponent(jLabel43)
+                            .addComponent(jLabel41)
+                            .addComponent(jLabel44)
+                            .addComponent(jLabel45))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        txtMe2Layout.setVerticalGroup(
+            txtMe2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(txtMe2Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel42)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel44)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane26, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel41)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane24, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel43)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane25, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel45)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane27, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
+        );
+
+        javax.swing.GroupLayout pCrc2Layout = new javax.swing.GroupLayout(pCrc2);
+        pCrc2.setLayout(pCrc2Layout);
+        pCrc2Layout.setHorizontalGroup(
+            pCrc2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pCrc2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pInput4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pOutput2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtMe2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pCrc2Layout.setVerticalGroup(
+            pCrc2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCrc2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pCrc2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtMe2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pOutput2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pInput4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout pHammingLayout = new javax.swing.GroupLayout(pHamming);
         pHamming.setLayout(pHammingLayout);
         pHammingLayout.setHorizontalGroup(
             pHammingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 910, Short.MAX_VALUE)
+            .addGroup(pHammingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pHammingLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(pCrc2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         pHammingLayout.setVerticalGroup(
             pHammingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 338, Short.MAX_VALUE)
+            .addGroup(pHammingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pHammingLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(pCrc2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         jTabbedPane1.addTab("Hamming", pHamming);
@@ -801,6 +1091,26 @@ public class TelaPrincipal extends javax.swing.JFrame {
         txtPalavra2Checksum.setText(util.AsciiToBinary(tfPalavra2CH.getText()));
     }//GEN-LAST:event_tfPalavra2CHAtualizaInputBinario
 
+    private void tfMensagem3AtualizaInputBinario(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfMensagem3AtualizaInputBinario
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfMensagem3AtualizaInputBinario
+
+    private void tfPolinomio3validaPolinomio(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPolinomio3validaPolinomio
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfPolinomio3validaPolinomio
+
+    private void tfGrauPolinomio3validaGrauPolinomio(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfGrauPolinomio3validaGrauPolinomio
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfGrauPolinomio3validaGrauPolinomio
+
+    private void executarCrc1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_executarCrc1ActionPerformed
+       
+    }//GEN-LAST:event_executarCrc1ActionPerformed
+
+    private void tfMensagem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfMensagem3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfMensagem3ActionPerformed
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -814,25 +1124,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton executarChecksum;
     private javax.swing.JButton executarCrc;
+    private javax.swing.JButton executarCrc1;
     private javax.swing.JCheckBox isSimularErro;
-    private javax.swing.JCheckBox isSimularErro1;
-    private javax.swing.JCheckBox isSimularErro2;
     private javax.swing.JCheckBox isSimularErro3;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JCheckBox isSimularErro4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
@@ -847,15 +1148,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane10;
-    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
@@ -866,6 +1176,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane19;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane20;
+    private javax.swing.JScrollPane jScrollPane21;
+    private javax.swing.JScrollPane jScrollPane22;
+    private javax.swing.JScrollPane jScrollPane23;
+    private javax.swing.JScrollPane jScrollPane24;
+    private javax.swing.JScrollPane jScrollPane25;
+    private javax.swing.JScrollPane jScrollPane26;
+    private javax.swing.JScrollPane jScrollPane27;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -876,46 +1193,50 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea msgEmBits;
-    private javax.swing.JTextArea msgEmBits1;
-    private javax.swing.JTextArea msgEmBits2;
+    private javax.swing.JTextArea msgEmBits3;
     private javax.swing.JPanel pCheckSum;
     private javax.swing.JPanel pCrc;
     private javax.swing.JPanel pCrc1;
+    private javax.swing.JPanel pCrc2;
     private javax.swing.JPanel pHamming;
     private javax.swing.JPanel pInput;
-    private javax.swing.JPanel pInput1;
-    private javax.swing.JPanel pInput2;
     private javax.swing.JPanel pInput3;
+    private javax.swing.JPanel pInput4;
     private javax.swing.JPanel pOutput;
     private javax.swing.JPanel pOutput1;
+    private javax.swing.JPanel pOutput2;
     private javax.swing.JPanel pRed_Solomon;
     private javax.swing.JTextField tfGrauPolinomio;
-    private javax.swing.JTextField tfGrauPolinomio1;
-    private javax.swing.JTextField tfGrauPolinomio2;
+    private javax.swing.JTextField tfGrauPolinomio3;
     private javax.swing.JTextField tfMensagem;
-    private javax.swing.JTextField tfMensagem1;
-    private javax.swing.JTextField tfMensagem2;
+    private javax.swing.JTextField tfMensagem3;
     private javax.swing.JTextField tfPalavra1CH;
     private javax.swing.JTextField tfPalavra2CH;
     private javax.swing.JTextField tfPolinomio;
-    private javax.swing.JTextField tfPolinomio1;
-    private javax.swing.JTextField tfPolinomio2;
+    private javax.swing.JTextField tfPolinomio3;
     private javax.swing.JTextArea txtAsciiEnviado;
     private javax.swing.JTextArea txtAsciiEnviado1;
+    private javax.swing.JTextArea txtAsciiEnviado2;
     private javax.swing.JTextArea txtBitsEnviados;
+    private javax.swing.JTextArea txtBitsEnviados1;
     private javax.swing.JTextArea txtBitsInvertidos;
     private javax.swing.JPanel txtMe;
     private javax.swing.JPanel txtMe1;
+    private javax.swing.JPanel txtMe2;
     private javax.swing.JTextArea txtMensagemRecebida;
     private javax.swing.JTextArea txtMensagemRecebida1;
+    private javax.swing.JTextArea txtMensagemRecebida2;
     private javax.swing.JTextArea txtMsgEnviadaCheckSum;
     private javax.swing.JTextArea txtPalavra1Checksum;
     private javax.swing.JTextArea txtPalavra2Checksum;
     private javax.swing.JTextArea txtRestoXorRecebido;
     private javax.swing.JTextArea txtRestoXorRecebido1;
+    private javax.swing.JTextArea txtRestoXorRecebido2;
     private javax.swing.JTextArea txtRestoXorTransmitido;
+    private javax.swing.JTextArea txtRestoXorTransmitido1;
     private javax.swing.JTextArea txtResultTransmissao;
     private javax.swing.JTextArea txtResultTransmissao1;
+    private javax.swing.JTextArea txtResultTransmissao2;
     private javax.swing.JTextArea txtResultadoSomaChecksum;
     // End of variables declaration//GEN-END:variables
 }
