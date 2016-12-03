@@ -1,9 +1,7 @@
 package br.unisc.trabalho2.tecnicas;
 
-import com.sun.xml.internal.ws.util.StringUtils;
 import java.util.Random;
 import java.util.regex.Pattern;
-import org.jcp.xml.dsig.internal.dom.Utils;
 
 /**
  *

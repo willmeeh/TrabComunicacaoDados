@@ -5,7 +5,10 @@
  */
 package br.unisc.trabalho2.tecnicas;
 
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.Vector;
+import sun.util.logging.resources.logging;
 
 /**
  *
@@ -32,9 +35,9 @@ public class Hamming {
         this.indice = indice;
     }
 
-    Vector arrayPotencais;
-    int valor = 0;
-    int x = 0;
+    static Vector arrayPotencais;
+    static int valor = 0;
+    static int x = 0;
 
     //calcula as potencais de 2 // recursivo
     public int potenciadeDois(int numero) {
@@ -53,12 +56,34 @@ public class Hamming {
         arrayPotencais = new Vector();
         // encontra as potencias e armazena na arrayPotencais
         potenciadeDois(numeroBits);
+
+        int aux = numeroBits + arrayPotencais.size();
+
+        Hamming hamming;
+        LinkedList<Hamming> linkedList = new LinkedList<Hamming>();
+
+        int c = arrayPotencais.size() - 1;
+        int m = 1;
         
-        int aux = numeroBits+arrayPotencais.size();
-        
-        for (int i = 0; 1 < aux; i++) {
-            
+        for (int i = 1; i <= aux; i++) {
+            // c fica -1  com este if nao da mais erro
+            if (c >= 0) {
+                if (i == Integer.parseInt(arrayPotencais.get(c).toString())) {
+                    int ax = arrayPotencais.size() - c;
+                    hamming = new Hamming();
+                    hamming.setIndice("c" + ax);
+                    c--;
+                } else {
+                    hamming = new Hamming();
+                    hamming.setIndice("m" + m);
+                    hamming.setBit(Integer.parseInt(array[i]));
+                    m++;
+                }
+                linkedList.add(hamming);
+            }
+
         }
+        System.err.println("s");
 
     }
 
