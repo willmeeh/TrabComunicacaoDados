@@ -84,7 +84,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         txtPalavra1Checksum = new javax.swing.JTextArea();
         jLabel22 = new javax.swing.JLabel();
         executarChecksum = new javax.swing.JButton();
-        isSimularErro3 = new javax.swing.JCheckBox();
+        isSimularErroChecksum = new javax.swing.JCheckBox();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         tfPalavra2CH = new javax.swing.JTextField();
@@ -104,16 +104,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
         txtMe1 = new javax.swing.JPanel();
         jLabel28 = new javax.swing.JLabel();
         jScrollPane15 = new javax.swing.JScrollPane();
-        txtRestoXorRecebido1 = new javax.swing.JTextArea();
+        txtComparacaoChecksumEnviado = new javax.swing.JTextArea();
         jLabel29 = new javax.swing.JLabel();
         jScrollPane16 = new javax.swing.JScrollPane();
-        txtResultTransmissao1 = new javax.swing.JTextArea();
+        txtResultTransmissaoChecksum = new javax.swing.JTextArea();
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         jScrollPane17 = new javax.swing.JScrollPane();
-        txtMensagemRecebida1 = new javax.swing.JTextArea();
+        txtMensagemRecebidaCheckSum = new javax.swing.JTextArea();
         jScrollPane18 = new javax.swing.JScrollPane();
-        txtAsciiEnviado1 = new javax.swing.JTextArea();
+        txtAsciiEnviadoChecksum = new javax.swing.JTextArea();
         jLabel32 = new javax.swing.JLabel();
         pRed_Solomon = new javax.swing.JPanel();
         pHamming = new javax.swing.JPanel();
@@ -441,7 +441,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        isSimularErro3.setText("Simular Erro");
+        isSimularErroChecksum.setText("Simular Erro");
 
         jLabel23.setText("Palavra 2");
 
@@ -477,7 +477,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                             .addGroup(pInput3Layout.createSequentialGroup()
                                 .addComponent(executarChecksum, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(isSimularErro3))
+                                .addComponent(isSimularErroChecksum))
                             .addComponent(jLabel23)
                             .addComponent(jLabel24))
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -505,7 +505,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(pInput3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(executarChecksum)
-                    .addComponent(isSimularErro3))
+                    .addComponent(isSimularErroChecksum))
                 .addGap(0, 11, Short.MAX_VALUE))
         );
 
@@ -569,30 +569,30 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel28.setText("Resto da operacao XOR");
+        jLabel28.setText("Comparacao com checksum enviado");
 
-        txtRestoXorRecebido1.setColumns(20);
-        txtRestoXorRecebido1.setRows(5);
-        jScrollPane15.setViewportView(txtRestoXorRecebido1);
+        txtComparacaoChecksumEnviado.setColumns(20);
+        txtComparacaoChecksumEnviado.setRows(5);
+        jScrollPane15.setViewportView(txtComparacaoChecksumEnviado);
 
         jLabel29.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel29.setText("Receptor");
 
-        txtResultTransmissao1.setColumns(20);
-        txtResultTransmissao1.setRows(5);
-        jScrollPane16.setViewportView(txtResultTransmissao1);
+        txtResultTransmissaoChecksum.setColumns(20);
+        txtResultTransmissaoChecksum.setRows(5);
+        jScrollPane16.setViewportView(txtResultTransmissaoChecksum);
 
         jLabel30.setText("Resultado da verificacao de erros");
 
         jLabel31.setText("Mensagem Recebida");
 
-        txtMensagemRecebida1.setColumns(20);
-        txtMensagemRecebida1.setRows(5);
-        jScrollPane17.setViewportView(txtMensagemRecebida1);
+        txtMensagemRecebidaCheckSum.setColumns(20);
+        txtMensagemRecebidaCheckSum.setRows(5);
+        jScrollPane17.setViewportView(txtMensagemRecebidaCheckSum);
 
-        txtAsciiEnviado1.setColumns(20);
-        txtAsciiEnviado1.setRows(5);
-        jScrollPane18.setViewportView(txtAsciiEnviado1);
+        txtAsciiEnviadoChecksum.setColumns(20);
+        txtAsciiEnviadoChecksum.setRows(5);
+        jScrollPane18.setViewportView(txtAsciiEnviadoChecksum);
 
         jLabel32.setText("Mensagem decodificado para ASCII");
 
@@ -972,6 +972,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         msgEmBits.setText(util.AsciiToBinary(tfMensagem.getText()));
     }//GEN-LAST:event_tfMensagemAtualizaInputBinario
 
+    //Este metodo serve para validar o polinomio, impedindo de colocar outros caracteres
+    //alem de numeros binarios
     private void tfPolinomiovalidaPolinomio(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPolinomiovalidaPolinomio
         boolean isBin = util.isNumeroBinario(tfPolinomio);
         if (isBin) {
@@ -1010,7 +1012,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     auxParsAsciiSeSimulaErro = auxMsg;
                     //popula text com a mensagem recebida simulando erro
                     txtMensagemRecebida.setText(msgEnviada);
-
                     //
                     resultRestoXorCrcReceptor = crc.getRestoXor(auxMsg, tfPolinomio.getText(), grauPolinomio);
 
@@ -1021,8 +1022,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
                 //Verifica se o resultado do xor e tudo 0s, ou e tudo 1s,
                 //e Popula o status da transmissao de acordo com o resultado
-                String resultTransmissao = crc.verivicaErro(resultRestoXorCrcReceptor);
-                txtResultTransmissao.setText(resultTransmissao);
+                String resultTransmissaoCrc = crc.verivicaErro(resultRestoXorCrcReceptor);
+                txtResultTransmissao.setText(resultTransmissaoCrc);
 
                 //Converte a mensagem binaria enviada para ASCII
                 StringBuilder str = new StringBuilder();
@@ -1055,10 +1056,39 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         //Concatena a palavra 1 com a palavra 2 e com o resultado da soma 
         //da p1 com p2, o qual esta com seus bits invertidos
-        String msgSentChecksum = palavra1Checksum + palavra2Checksum + bitsInvertidosCheckSum;
-        txtMsgEnviadaCheckSum.setText(msgSentChecksum);
+        String msgEnviadaChecksum = palavra1Checksum + " " + palavra2Checksum + " " + bitsInvertidosCheckSum;
+        txtMsgEnviadaCheckSum.setText(msgEnviadaChecksum);
 
-        checksum.fazSoma2(palavra1Checksum, palavra2Checksum);
+        String checkSumVerificado = "";
+
+        if (!isSimularErroChecksum.isSelected()) {
+            txtMensagemRecebidaCheckSum.setText(msgEnviadaChecksum);
+
+            checkSumVerificado = checksum.calculoVerificacaoMensagem(msgEnviadaChecksum);
+
+            txtComparacaoChecksumEnviado.setText(checkSumVerificado);
+        }else {
+            //troca um bit da mensagem enviada para simular erro
+            msgEnviadaChecksum = checksum.gerarErroFromChecksum(msgEnviadaChecksum);
+            
+            txtMensagemRecebidaCheckSum.setText(msgEnviadaChecksum);
+
+            checkSumVerificado = checksum.calculoVerificacaoMensagem(msgEnviadaChecksum);
+
+            txtComparacaoChecksumEnviado.setText(checkSumVerificado);
+        }
+
+        //Verifica o resultado do checksum ,
+        //e Popula o status da transmissao de acordo com o resultado.
+        String resultTransmissaoChecksum = checksum.verivicaErro(checkSumVerificado);
+        txtResultTransmissaoChecksum.setText(resultTransmissaoChecksum);
+        
+        
+        //Converte a mensagem binaria enviada para ASCII
+        StringBuilder str = new StringBuilder();
+        str.append(msgEnviadaChecksum.replace(" ", ""));
+        txtAsciiEnviadoChecksum.setText(MetodosUteis.converteBinarioParaAscii(str));
+
     }//GEN-LAST:event_executarChecksumActionPerformed
 
     private void tfPalavra2CHAtualizaInputBinario(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPalavra2CHAtualizaInputBinario
@@ -1106,8 +1136,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton executarCrc;
     private javax.swing.JButton executarHamming;
     private javax.swing.JCheckBox isSimularErro;
-    private javax.swing.JCheckBox isSimularErro3;
     private javax.swing.JCheckBox isSimularErro4;
+    private javax.swing.JCheckBox isSimularErroChecksum;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1193,28 +1223,28 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField tfPolinomio;
     private javax.swing.JTextField tfPolinomio3;
     private javax.swing.JTextArea txtAsciiEnviado;
-    private javax.swing.JTextArea txtAsciiEnviado1;
     private javax.swing.JTextArea txtAsciiEnviado2;
+    private javax.swing.JTextArea txtAsciiEnviadoChecksum;
     private javax.swing.JTextArea txtBitsEnviados;
     private javax.swing.JTextArea txtBitsEnviados1;
     private javax.swing.JTextArea txtBitsInvertidos;
+    private javax.swing.JTextArea txtComparacaoChecksumEnviado;
     private javax.swing.JPanel txtMe;
     private javax.swing.JPanel txtMe1;
     private javax.swing.JPanel txtMe2;
     private javax.swing.JTextArea txtMensagemRecebida;
-    private javax.swing.JTextArea txtMensagemRecebida1;
     private javax.swing.JTextArea txtMensagemRecebida2;
+    private javax.swing.JTextArea txtMensagemRecebidaCheckSum;
     private javax.swing.JTextArea txtMsgEnviadaCheckSum;
     private javax.swing.JTextArea txtPalavra1Checksum;
     private javax.swing.JTextArea txtPalavra2Checksum;
     private javax.swing.JTextArea txtRestoXorRecebido;
-    private javax.swing.JTextArea txtRestoXorRecebido1;
     private javax.swing.JTextArea txtRestoXorRecebido2;
     private javax.swing.JTextArea txtRestoXorTransmitido;
     private javax.swing.JTextArea txtRestoXorTransmitido1;
     private javax.swing.JTextArea txtResultTransmissao;
-    private javax.swing.JTextArea txtResultTransmissao1;
     private javax.swing.JTextArea txtResultTransmissao2;
+    private javax.swing.JTextArea txtResultTransmissaoChecksum;
     private javax.swing.JTextArea txtResultadoSomaChecksum;
     // End of variables declaration//GEN-END:variables
 }

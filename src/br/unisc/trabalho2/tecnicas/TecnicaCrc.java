@@ -86,9 +86,7 @@ public class TecnicaCrc {
             msgCharArray[num] = '0';
         } else {
             msgCharArray[num] = '1';
-
         }
-
         String result = "";
         for (int i = 0; i < msgCharArray.length; i++) {
             result += msgCharArray[i];

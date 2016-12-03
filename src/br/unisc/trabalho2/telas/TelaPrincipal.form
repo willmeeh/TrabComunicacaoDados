@@ -556,7 +556,7 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="executarChecksum" min="-2" pref="109" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="isSimularErro3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="isSimularErroChecksum" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="jLabel23" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel24" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -590,7 +590,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="executarChecksum" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="isSimularErro3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="isSimularErroChecksum" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="11" max="32767" attributes="0"/>
                       </Group>
@@ -640,7 +640,7 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="executarChecksumActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="isSimularErro3">
+                <Component class="javax.swing.JCheckBox" name="isSimularErroChecksum">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Simular Erro"/>
                   </Properties>
@@ -855,7 +855,7 @@
               <SubComponents>
                 <Component class="javax.swing.JLabel" name="jLabel28">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Resto da operacao XOR"/>
+                    <Property name="text" type="java.lang.String" value="Comparacao com checksum enviado"/>
                   </Properties>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane15">
@@ -865,7 +865,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTextArea" name="txtRestoXorRecebido1">
+                    <Component class="javax.swing.JTextArea" name="txtComparacaoChecksumEnviado">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
@@ -888,7 +888,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTextArea" name="txtResultTransmissao1">
+                    <Component class="javax.swing.JTextArea" name="txtResultTransmissaoChecksum">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
@@ -913,7 +913,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTextArea" name="txtMensagemRecebida1">
+                    <Component class="javax.swing.JTextArea" name="txtMensagemRecebidaCheckSum">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
@@ -928,7 +928,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTextArea" name="txtAsciiEnviado1">
+                    <Component class="javax.swing.JTextArea" name="txtAsciiEnviadoChecksum">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
