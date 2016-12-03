@@ -1,6 +1,8 @@
 package br.unisc.trabalho2.tecnicas;
 
 import com.sun.xml.internal.ws.util.StringUtils;
+import java.awt.List;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.regex.Pattern;
 import org.jcp.xml.dsig.internal.dom.Utils;
@@ -139,15 +141,27 @@ public class TecnicaChecksum {
     public String verivicaErro(String msg) {
 
         String result = "";
+        
+        StringBuilder posicoes = new StringBuilder();
+        
+        boolean flag = false;
+        
         for (int i = 0; i < msg.length(); i++) {
             //obtem o valor do indice da string de acordo com o for
             char c = msg.charAt(i);
             if (c == '1') {
                 result = "A mensagem foi transmitida sem erro";
             } else if (c == '0') {
-                return "Mensagem transmitida com erro";
+                flag = true;
+                //adiciona as posicoes em que ocorreram 0
+                posicoes.append(" "+i);
             }
         }
+        
+        if (flag) {
+            result = "Mensagem transmitida com erro na(s) possiveis posicoes: " + posicoes.toString();
+        }
+        
         return result;
     }
     
