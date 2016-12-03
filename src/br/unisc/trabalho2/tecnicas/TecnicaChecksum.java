@@ -46,10 +46,10 @@ public class TecnicaChecksum {
 
             System.out.println("p2" + palavra2);
             System.out.println("p1" + palavra1);
-        //Se palavra 2 for maior que palavra 1, preenche de 0s na palavra 1
-        //para poder fazer a soma em binario
+            //Se palavra 2 for maior que palavra 1, preenche de 0s na palavra 1
+            //para poder fazer a soma em binario
         } else if (palavra2.length() > palavra1.length()) {
-            
+
             String aux = StrZeroDireita(palavra2.length(), palavra1.length());
             palavra1 = aux + palavra1;
 
@@ -131,50 +131,60 @@ public class TecnicaChecksum {
 
         return aux;
     }
-    
+
     //Percorre todo o resto do checksum e verifica todos os bits sao 1s,
     //retornando uma mensagem erro ou de sucesso
     public String verivicaErro(String msg) {
 
         String result = "";
+
+        StringBuilder posicoes = new StringBuilder();
+
+        boolean flag = false;
+
         for (int i = 0; i < msg.length(); i++) {
             //obtem o valor do indice da string de acordo com o for
             char c = msg.charAt(i);
             if (c == '1') {
                 result = "A mensagem foi transmitida sem erro";
             } else if (c == '0') {
-                return "Mensagem transmitida com erro";
+                flag = true;
+                //adiciona as posicoes em que ocorreram 0
+                posicoes.append(" " + i);
             }
         }
+
+        if (flag) {
+            result = "Mensagem transmitida com erro na(s) possiveis posicoes: " + posicoes.toString();
+        }
+
         return result;
     }
-    
-    
-    
+
     public String calculoVerificacaoMensagem(String msgEnviadaChecksum) {
         //chama o metodo que separa a mensagem de acordo com os espacos em brancos,
         //sendo que no indice 0, contem a prmeira palabra, no indice 1 a segunda palavra, 
         //e no indice 2 o checksum da mensagem enviada
         String msgSeparada[] = separaMensagem(msgEnviadaChecksum);
-        
+
         //Calcula novamente o checksum da mensagem recebida
         String resultSoma = fazSoma(msgSeparada[0], msgSeparada[1]);
-        
+
         String result = fazSoma(msgSeparada[2], resultSoma);
-        
+
         return result;
     }
 
     public String[] separaMensagem(String msgEnviadaChecksum) {
         char[] msg = msgEnviadaChecksum.toCharArray();
-        
+
         //Separa a mensagem de acordo com o espaco em branco, sendo que sempre ira ter 
         //3 indices no array
         String msgSeparada[] = msgEnviadaChecksum.split(Pattern.quote(" "));
-        
+
         return msgSeparada;
     }
-    
+
     //Troca um bit da mensagem para simular o erro
     public String gerarErroFromChecksum(String msg) {
         char[] msgCharArray = msg.toCharArray();
@@ -185,7 +195,7 @@ public class TecnicaChecksum {
 
         if (msgCharArray[num] == '1') {
             msgCharArray[num] = '0';
-        } else if(msgCharArray[num] == '0'){
+        } else if (msgCharArray[num] == '0') {
             msgCharArray[num] = '1';
         }
         String result = "";

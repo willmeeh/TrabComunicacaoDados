@@ -8,7 +8,6 @@ package br.unisc.trabalho2.tecnicas;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Vector;
-import sun.util.logging.resources.logging;
 
 /**
  *
