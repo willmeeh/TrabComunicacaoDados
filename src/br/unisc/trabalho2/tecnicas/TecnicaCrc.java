@@ -11,10 +11,10 @@ public class TecnicaCrc {
     public TecnicaCrc() {
     }
 
-    public String getRestoXor(String msg, String dividendo, String grauPolinomio) {
+    public String getRestoXor(String msg, String dividendo, int grauPolinomio) {
         //Adiciona 0s no dividendo, de acordo com o grau do polinomio
 
-        for (int i = 1; i <= Integer.parseInt(grauPolinomio); i++) {
+        for (int i = 1; i <= grauPolinomio; i++) {
             msg += "0";
         }
         System.out.println(msg);

@@ -20,7 +20,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     MetodosUteis util = new MetodosUteis();
 
     TecnicaCrc crc = new TecnicaCrc();
-    TecnicaChecksum checksum = new TecnicaChecksum();  
+    TecnicaChecksum checksum = new TecnicaChecksum();
     Hamming ham = new Hamming();
 
     public TelaPrincipal() {
@@ -52,8 +52,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         tfPolinomio = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        tfGrauPolinomio = new javax.swing.JTextField();
         executarCrc = new javax.swing.JButton();
         isSimularErro = new javax.swing.JCheckBox();
         pOutput = new javax.swing.JPanel();
@@ -206,15 +204,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jLabel3.setText("Polinomio em Bits");
 
-        jLabel4.setText("Grau do polinomio");
-
-        tfGrauPolinomio.setText("5");
-        tfGrauPolinomio.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                tfGrauPolinomiovalidaGrauPolinomio(evt);
-            }
-        });
-
         executarCrc.setText("Executar");
         executarCrc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -234,13 +223,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addComponent(tfMensagem)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
                     .addComponent(tfPolinomio)
-                    .addComponent(tfGrauPolinomio)
                     .addGroup(pInputLayout.createSequentialGroup()
                         .addGroup(pInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel4)
                             .addGroup(pInputLayout.createSequentialGroup()
                                 .addComponent(executarCrc, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -263,11 +250,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfPolinomio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfGrauPolinomio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(57, 57, 57)
                 .addGroup(pInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(executarCrc)
                     .addComponent(isSimularErro))
@@ -997,65 +980,55 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tfPolinomiovalidaPolinomio
 
-    private void tfGrauPolinomiovalidaGrauPolinomio(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfGrauPolinomiovalidaGrauPolinomio
-        boolean isNumero = util.isNumero(tfGrauPolinomio);
-        if (isNumero) {
-        } else {
-            tfGrauPolinomio.setText("");
-        }
-    }//GEN-LAST:event_tfGrauPolinomiovalidaGrauPolinomio
-
     private void executarCrcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_executarCrcActionPerformed
         if (msgEmBits.getText().trim() != null && !msgEmBits.getText().equals("")) {
             if (tfPolinomio.getText() != null && !tfPolinomio.getText().equals("")) {
-                if (tfGrauPolinomio.getText() != null && !tfGrauPolinomio.getText().equals("")) {
 
-                    //Popula na tela o resto do xor obtido pela mensangem transmitida, de acordo com o polinomio e seu grau
-                    String resultCrcTransmissor = crc.getRestoXor(msgEmBits.getText(), tfPolinomio.getText(), tfGrauPolinomio.getText());
-                    txtRestoXorTransmitido.setText(resultCrcTransmissor);
+                int grauPolinomio = tfPolinomio.getText().length() - 1;
 
-                    //Popula a mensagem enviado(concatena o resto da divisao com a ,mensagem)
-                    String msgEnviada = crc.enviarBits(msgEmBits.getText(), resultCrcTransmissor);
-                    txtBitsEnviados.setText(msgEnviada);
+                //Popula na tela o resto do xor obtido pela mensangem transmitida, de acordo com o polinomio e seu grau
+                String resultCrcTransmissor = crc.getRestoXor(msgEmBits.getText(), tfPolinomio.getText(), grauPolinomio);
+                txtRestoXorTransmitido.setText(resultCrcTransmissor);
 
-                    String resultRestoXorCrcReceptor = "";
-                    String auxParsAsciiSeSimulaErro = "";
-                    if (!isSimularErro.isSelected()) {
-                        //popula text com a mensagem recebida
-                        txtMensagemRecebida.setText(msgEnviada);
+                //Popula a mensagem enviado(concatena o resto da divisao com a ,mensagem)
+                String msgEnviada = crc.enviarBits(msgEmBits.getText(), resultCrcTransmissor);
+                txtBitsEnviados.setText(msgEnviada);
 
-                        auxParsAsciiSeSimulaErro = msgEnviada;
+                String resultRestoXorCrcReceptor = "";
+                String auxParsAsciiSeSimulaErro = "";
+                if (!isSimularErro.isSelected()) {
+                    //popula text com a mensagem recebida
+                    txtMensagemRecebida.setText(msgEnviada);
 
-                        //Popula o resto da divisao da mensagem recebida
-                        resultRestoXorCrcReceptor = crc.getRestoXor(msgEnviada, tfPolinomio.getText(), tfGrauPolinomio.getText());
-                        txtRestoXorRecebido.setText(resultRestoXorCrcReceptor);
-                    } else {
-                        String auxMsg = crc.gerarErroFromXorRest(msgEnviada);
-                        auxParsAsciiSeSimulaErro = auxMsg;
-                        //popula text com a mensagem recebida simulando erro
-                        txtMensagemRecebida.setText(msgEnviada);
+                    auxParsAsciiSeSimulaErro = msgEnviada;
 
-                        //
-                        resultRestoXorCrcReceptor = crc.getRestoXor(auxMsg, tfPolinomio.getText(), tfGrauPolinomio.getText());
-
-                        //popula resultado do xor
-                        txtRestoXorRecebido.setText(resultRestoXorCrcReceptor);
-
-                    }
-
-                    //Verifica se o resultado do xor e tudo 0s, ou e tudo 1s,
-                    //e Popula o status da transmissao de acordo com o resultado
-                    String resultTransmissao = crc.verivicaErro(resultRestoXorCrcReceptor);
-                    txtResultTransmissao.setText(resultTransmissao);
-
-                    //Converte a mensagem binaria enviada para ASCII
-                    StringBuilder str = new StringBuilder();
-                    str.append(auxParsAsciiSeSimulaErro);
-                    txtAsciiEnviado.setText(MetodosUteis.converteBinarioParaAscii(str));
-
+                    //Popula o resto da divisao da mensagem recebida
+                    resultRestoXorCrcReceptor = crc.getRestoXor(msgEnviada, tfPolinomio.getText(), grauPolinomio);
+                    txtRestoXorRecebido.setText(resultRestoXorCrcReceptor);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Grau do polinomio nao informado!");
+                    String auxMsg = crc.gerarErroFromXorRest(msgEnviada);
+                    auxParsAsciiSeSimulaErro = auxMsg;
+                    //popula text com a mensagem recebida simulando erro
+                    txtMensagemRecebida.setText(msgEnviada);
+
+                    //
+                    resultRestoXorCrcReceptor = crc.getRestoXor(auxMsg, tfPolinomio.getText(), grauPolinomio);
+
+                    //popula resultado do xor
+                    txtRestoXorRecebido.setText(resultRestoXorCrcReceptor);
+
                 }
+
+                //Verifica se o resultado do xor e tudo 0s, ou e tudo 1s,
+                //e Popula o status da transmissao de acordo com o resultado
+                String resultTransmissao = crc.verivicaErro(resultRestoXorCrcReceptor);
+                txtResultTransmissao.setText(resultTransmissao);
+
+                //Converte a mensagem binaria enviada para ASCII
+                StringBuilder str = new StringBuilder();
+                str.append(auxParsAsciiSeSimulaErro);
+                txtAsciiEnviado.setText(MetodosUteis.converteBinarioParaAscii(str));
+
             } else {
                 JOptionPane.showMessageDialog(null, "Polinomio nao informado!");
             }
@@ -1093,7 +1066,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_tfPalavra2CHAtualizaInputBinario
 
     private void tfMensagem3AtualizaInputBinario(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfMensagem3AtualizaInputBinario
-       msgEmBits3.setText(util.AsciiToBinary(tfMensagem3.getText()));
+        msgEmBits3.setText(util.AsciiToBinary(tfMensagem3.getText()));
     }//GEN-LAST:event_tfMensagem3AtualizaInputBinario
 
     private void tfPolinomio3validaPolinomio(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPolinomio3validaPolinomio
@@ -1101,12 +1074,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_tfPolinomio3validaPolinomio
 
     private void executarHammingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_executarHammingActionPerformed
-       String aux = msgEmBits3.getText();
-       String array[] = new String[aux.length()];
+        String aux = msgEmBits3.getText();
+        String array[] = new String[aux.length()];
         for (int i = 0; i < aux.length(); i++) {
             array[i] = String.valueOf(aux.charAt(i));
         }
-        
+
         ham.calcularHamming(array);
     }//GEN-LAST:event_executarHammingActionPerformed
 
@@ -1161,7 +1134,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
@@ -1213,7 +1185,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel pOutput1;
     private javax.swing.JPanel pOutput2;
     private javax.swing.JPanel pRed_Solomon;
-    private javax.swing.JTextField tfGrauPolinomio;
     private javax.swing.JTextField tfGrauPolinomio3;
     private javax.swing.JTextField tfMensagem;
     private javax.swing.JTextField tfMensagem3;
