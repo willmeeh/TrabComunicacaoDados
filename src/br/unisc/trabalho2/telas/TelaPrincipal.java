@@ -1,5 +1,6 @@
 package br.unisc.trabalho2.telas;
 
+import br.unisc.trabalho2.tecnicas.Hamming;
 import br.unisc.trabalho2.tecnicas.TecnicaChecksum;
 import br.unisc.trabalho2.tecnicas.TecnicaCrc;
 import br.unisc.trabalho2.telas.acoes.TelaPrincipalAction;
@@ -19,7 +20,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     MetodosUteis util = new MetodosUteis();
 
     TecnicaCrc crc = new TecnicaCrc();
-    TecnicaChecksum checksum = new TecnicaChecksum();
+    TecnicaChecksum checksum = new TecnicaChecksum();  
+    Hamming ham = new Hamming();
 
     public TelaPrincipal() {
         initComponents();
@@ -128,7 +130,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel36 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
         tfGrauPolinomio3 = new javax.swing.JTextField();
-        executarCrc1 = new javax.swing.JButton();
+        executarHamming = new javax.swing.JButton();
         isSimularErro4 = new javax.swing.JCheckBox();
         pOutput2 = new javax.swing.JPanel();
         jScrollPane22 = new javax.swing.JScrollPane();
@@ -695,7 +697,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Red_Solomon", pRed_Solomon);
 
-        pCrc2.setBackground(new java.awt.Color(126, 167, 176));
+        pCrc2.setBackground(new java.awt.Color(78, 200, 78));
 
         tfMensagem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -712,7 +714,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         msgEmBits3.setColumns(20);
         msgEmBits3.setRows(5);
-        msgEmBits3.setText("111100101");
         jScrollPane21.setViewportView(msgEmBits3);
         msgEmBits.setAutoscrolls(false);
 
@@ -737,10 +738,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        executarCrc1.setText("Executar");
-        executarCrc1.addActionListener(new java.awt.event.ActionListener() {
+        executarHamming.setText("Executar");
+        executarHamming.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                executarCrc1ActionPerformed(evt);
+                executarHammingActionPerformed(evt);
             }
         });
 
@@ -764,7 +765,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                             .addComponent(jLabel36)
                             .addComponent(jLabel37)
                             .addGroup(pInput4Layout.createSequentialGroup()
-                                .addComponent(executarCrc1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(executarHamming, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(isSimularErro4)))
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -791,7 +792,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(tfGrauPolinomio3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pInput4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(executarCrc1)
+                    .addComponent(executarHamming)
                     .addComponent(isSimularErro4))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -1092,24 +1093,30 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_tfPalavra2CHAtualizaInputBinario
 
     private void tfMensagem3AtualizaInputBinario(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfMensagem3AtualizaInputBinario
-        // TODO add your handling code here:
+       msgEmBits3.setText(util.AsciiToBinary(tfMensagem3.getText()));
     }//GEN-LAST:event_tfMensagem3AtualizaInputBinario
 
     private void tfPolinomio3validaPolinomio(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPolinomio3validaPolinomio
         // TODO add your handling code here:
     }//GEN-LAST:event_tfPolinomio3validaPolinomio
 
-    private void tfGrauPolinomio3validaGrauPolinomio(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfGrauPolinomio3validaGrauPolinomio
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfGrauPolinomio3validaGrauPolinomio
-
-    private void executarCrc1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_executarCrc1ActionPerformed
-       
-    }//GEN-LAST:event_executarCrc1ActionPerformed
+    private void executarHammingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_executarHammingActionPerformed
+       String aux = msgEmBits3.getText();
+       String array[] = new String[aux.length()];
+        for (int i = 0; i < aux.length(); i++) {
+            array[i] = String.valueOf(aux.charAt(i));
+        }
+        
+        ham.calcularHamming(array);
+    }//GEN-LAST:event_executarHammingActionPerformed
 
     private void tfMensagem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfMensagem3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfMensagem3ActionPerformed
+
+    private void tfGrauPolinomio3validaGrauPolinomio(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfGrauPolinomio3validaGrauPolinomio
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfGrauPolinomio3validaGrauPolinomio
 
     public static void main(String args[]) {
 
@@ -1124,7 +1131,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton executarChecksum;
     private javax.swing.JButton executarCrc;
-    private javax.swing.JButton executarCrc1;
+    private javax.swing.JButton executarHamming;
     private javax.swing.JCheckBox isSimularErro;
     private javax.swing.JCheckBox isSimularErro3;
     private javax.swing.JCheckBox isSimularErro4;

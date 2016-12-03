@@ -16,5 +16,12 @@ public class Hamming {
         
         return numero / 2;
     }
+    
+    public void  calcularHamming (String array[]){
+        int numeroBits = array.length;
+        for (int i = 1; i <= numeroBits; i++) {
+            
+        }
+    }
 
 }
