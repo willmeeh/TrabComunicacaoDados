@@ -115,7 +115,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jScrollPane18 = new javax.swing.JScrollPane();
         txtAsciiEnviadoChecksum = new javax.swing.JTextArea();
         jLabel32 = new javax.swing.JLabel();
-        pRed_Solomon = new javax.swing.JPanel();
         pHamming = new javax.swing.JPanel();
         pCrc2 = new javax.swing.JPanel();
         pInput4 = new javax.swing.JPanel();
@@ -667,19 +666,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Checksum", pCheckSum);
 
-        javax.swing.GroupLayout pRed_SolomonLayout = new javax.swing.GroupLayout(pRed_Solomon);
-        pRed_Solomon.setLayout(pRed_SolomonLayout);
-        pRed_SolomonLayout.setHorizontalGroup(
-            pRed_SolomonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 910, Short.MAX_VALUE)
-        );
-        pRed_SolomonLayout.setVerticalGroup(
-            pRed_SolomonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 338, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Red_Solomon", pRed_Solomon);
-
         pCrc2.setBackground(new java.awt.Color(78, 200, 78));
 
         tfMensagem3.addActionListener(new java.awt.event.ActionListener() {
@@ -963,24 +949,99 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void executarHammingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_executarHammingActionPerformed
+        String aux = msgEmBits3.getText();
+        String array[] = new String[aux.length()];
+        for (int i = 0; i < aux.length(); i++) {
+            array[i] = String.valueOf(aux.charAt(i));
+        }
+
+        ham.calcularHamming(array);
+    }//GEN-LAST:event_executarHammingActionPerformed
+
+    private void tfGrauPolinomio3validaGrauPolinomio(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfGrauPolinomio3validaGrauPolinomio
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfGrauPolinomio3validaGrauPolinomio
+
+    private void tfPolinomio3validaPolinomio(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPolinomio3validaPolinomio
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfPolinomio3validaPolinomio
+
+    private void tfMensagem3AtualizaInputBinario(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfMensagem3AtualizaInputBinario
+        msgEmBits3.setText(util.AsciiToBinary(tfMensagem3.getText()));
+    }//GEN-LAST:event_tfMensagem3AtualizaInputBinario
+
+    private void tfMensagem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfMensagem3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfMensagem3ActionPerformed
+
+    private void tfPalavra2CHAtualizaInputBinario(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPalavra2CHAtualizaInputBinario
+        txtPalavra2Checksum.setText(util.AsciiToBinary(tfPalavra2CH.getText()));
+    }//GEN-LAST:event_tfPalavra2CHAtualizaInputBinario
+
+    private void executarChecksumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_executarChecksumActionPerformed
+        if (!txtPalavra1Checksum.getText().equals("")  && txtPalavra1Checksum.getText() != null) {
+            if (!txtPalavra2Checksum.getText().equals("") && txtPalavra2Checksum.getText() != null) {
+
+                String palavra1Checksum = txtPalavra1Checksum.getText();
+                String palavra2Checksum = txtPalavra2Checksum.getText();
+
+                //faz soma das palavras
+                String resultSomaChecksum = checksum.fazSoma(palavra1Checksum, palavra2Checksum);
+                txtResultadoSomaChecksum.setText(resultSomaChecksum);
+                //inverte os bits do resultado da soma
+                String bitsInvertidosCheckSum = checksum.inverteResultSoma(resultSomaChecksum);
+                txtBitsInvertidos.setText(bitsInvertidosCheckSum);
+
+                //Concatena a palavra 1 com a palavra 2 e com o resultado da soma
+                //da p1 com p2, o qual esta com seus bits invertidos
+                String msgEnviadaChecksum = palavra1Checksum + " " + palavra2Checksum + " " + bitsInvertidosCheckSum;
+                txtMsgEnviadaCheckSum.setText(msgEnviadaChecksum);
+
+                String checkSumVerificado = "";
+
+                if (!isSimularErroChecksum.isSelected()) {
+                    txtMensagemRecebidaCheckSum.setText(msgEnviadaChecksum);
+
+                    checkSumVerificado = checksum.calculoVerificacaoMensagem(msgEnviadaChecksum);
+
+                    txtComparacaoChecksumEnviado.setText(checkSumVerificado);
+                } else {
+                    //troca um bit da mensagem enviada para simular erro
+                    msgEnviadaChecksum = checksum.gerarErroFromChecksum(msgEnviadaChecksum);
+
+                    txtMensagemRecebidaCheckSum.setText(msgEnviadaChecksum);
+
+                    checkSumVerificado = checksum.calculoVerificacaoMensagem(msgEnviadaChecksum);
+
+                    txtComparacaoChecksumEnviado.setText(checkSumVerificado);
+                }
+
+                //Verifica o resultado do checksum ,
+                //e Popula o status da transmissao de acordo com o resultado.
+                String resultTransmissaoChecksum = checksum.verivicaErro(checkSumVerificado);
+                txtResultTransmissaoChecksum.setText(resultTransmissaoChecksum);
+
+                //Converte a mensagem binaria enviada para ASCII
+                StringBuilder str = new StringBuilder();
+                str.append(msgEnviadaChecksum.replace(" ", ""));
+                txtAsciiEnviadoChecksum.setText(MetodosUteis.converteBinarioParaAscii(str));
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Mensagem 2 nao informada!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Mensagem 1 nao informada!");
+        }
+    }//GEN-LAST:event_executarChecksumActionPerformed
+
+    private void tfPalavra1CHAtualizaInputBinario(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPalavra1CHAtualizaInputBinario
+        txtPalavra1Checksum.setText(util.AsciiToBinary(tfPalavra1CH.getText()));
+    }//GEN-LAST:event_tfPalavra1CHAtualizaInputBinario
+
     private void abrirFormCrc(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_abrirFormCrc
 
-
     }//GEN-LAST:event_abrirFormCrc
-
-    private void tfMensagemAtualizaInputBinario(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfMensagemAtualizaInputBinario
-        msgEmBits.setText(util.AsciiToBinary(tfMensagem.getText()));
-    }//GEN-LAST:event_tfMensagemAtualizaInputBinario
-
-    //Este metodo serve para validar o polinomio, impedindo de colocar outros caracteres
-    //alem de numeros binarios
-    private void tfPolinomiovalidaPolinomio(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPolinomiovalidaPolinomio
-        boolean isBin = util.isNumeroBinario(tfPolinomio);
-        if (isBin) {
-        } else {
-            tfPolinomio.setText("");
-        }
-    }//GEN-LAST:event_tfPolinomiovalidaPolinomio
 
     private void executarCrcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_executarCrcActionPerformed
         if (msgEmBits.getText().trim() != null && !msgEmBits.getText().equals("")) {
@@ -998,12 +1059,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
                 String resultRestoXorCrcReceptor = "";
                 String auxParsAsciiSeSimulaErro = "";
+
+                //zera o grau do polinomio para nao acrescentar mais 0s na hora da verificacao
+                grauPolinomio = 0;
+
                 if (!isSimularErro.isSelected()) {
                     //popula text com a mensagem recebida
                     txtMensagemRecebida.setText(msgEnviada);
 
                     auxParsAsciiSeSimulaErro = msgEnviada;
-
+                    grauPolinomio = 0;
                     //Popula o resto da divisao da mensagem recebida
                     resultRestoXorCrcReceptor = crc.getRestoXor(msgEnviada, tfPolinomio.getText(), grauPolinomio);
                     txtRestoXorRecebido.setText(resultRestoXorCrcReceptor);
@@ -1019,7 +1084,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     txtRestoXorRecebido.setText(resultRestoXorCrcReceptor);
 
                 }
-
                 //Verifica se o resultado do xor e tudo 0s, ou e tudo 1s,
                 //e Popula o status da transmissao de acordo com o resultado
                 String resultTransmissaoCrc = crc.verivicaErro(resultRestoXorCrcReceptor);
@@ -1038,88 +1102,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_executarCrcActionPerformed
 
-    private void tfPalavra1CHAtualizaInputBinario(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPalavra1CHAtualizaInputBinario
-        txtPalavra1Checksum.setText(util.AsciiToBinary(tfPalavra1CH.getText()));
-    }//GEN-LAST:event_tfPalavra1CHAtualizaInputBinario
-
-    private void executarChecksumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_executarChecksumActionPerformed
-
-        String palavra1Checksum = txtPalavra1Checksum.getText();
-        String palavra2Checksum = txtPalavra2Checksum.getText();
-
-        //faz soma das palavras
-        String resultSomaChecksum = checksum.fazSoma(palavra1Checksum, palavra2Checksum);
-        txtResultadoSomaChecksum.setText(resultSomaChecksum);
-        //inverte os bits do resultado da soma
-        String bitsInvertidosCheckSum = checksum.inverteResultSoma(resultSomaChecksum);
-        txtBitsInvertidos.setText(bitsInvertidosCheckSum);
-
-        //Concatena a palavra 1 com a palavra 2 e com o resultado da soma 
-        //da p1 com p2, o qual esta com seus bits invertidos
-        String msgEnviadaChecksum = palavra1Checksum + " " + palavra2Checksum + " " + bitsInvertidosCheckSum;
-        txtMsgEnviadaCheckSum.setText(msgEnviadaChecksum);
-
-        String checkSumVerificado = "";
-
-        if (!isSimularErroChecksum.isSelected()) {
-            txtMensagemRecebidaCheckSum.setText(msgEnviadaChecksum);
-
-            checkSumVerificado = checksum.calculoVerificacaoMensagem(msgEnviadaChecksum);
-
-            txtComparacaoChecksumEnviado.setText(checkSumVerificado);
-        }else {
-            //troca um bit da mensagem enviada para simular erro
-            msgEnviadaChecksum = checksum.gerarErroFromChecksum(msgEnviadaChecksum);
-            
-            txtMensagemRecebidaCheckSum.setText(msgEnviadaChecksum);
-
-            checkSumVerificado = checksum.calculoVerificacaoMensagem(msgEnviadaChecksum);
-
-            txtComparacaoChecksumEnviado.setText(checkSumVerificado);
+    //Este metodo serve para validar o polinomio, impedindo de colocar outros caracteres
+    //alem de numeros binarios
+    private void tfPolinomiovalidaPolinomio(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPolinomiovalidaPolinomio
+        boolean isBin = util.isNumeroBinario(tfPolinomio);
+        if (isBin) {
+        } else {
+            tfPolinomio.setText("");
         }
+    }//GEN-LAST:event_tfPolinomiovalidaPolinomio
 
-        //Verifica o resultado do checksum ,
-        //e Popula o status da transmissao de acordo com o resultado.
-        String resultTransmissaoChecksum = checksum.verivicaErro(checkSumVerificado);
-        txtResultTransmissaoChecksum.setText(resultTransmissaoChecksum);
-        
-        
-        //Converte a mensagem binaria enviada para ASCII
-        StringBuilder str = new StringBuilder();
-        str.append(msgEnviadaChecksum.replace(" ", ""));
-        txtAsciiEnviadoChecksum.setText(MetodosUteis.converteBinarioParaAscii(str));
-
-    }//GEN-LAST:event_executarChecksumActionPerformed
-
-    private void tfPalavra2CHAtualizaInputBinario(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPalavra2CHAtualizaInputBinario
-        txtPalavra2Checksum.setText(util.AsciiToBinary(tfPalavra2CH.getText()));
-    }//GEN-LAST:event_tfPalavra2CHAtualizaInputBinario
-
-    private void tfMensagem3AtualizaInputBinario(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfMensagem3AtualizaInputBinario
-        msgEmBits3.setText(util.AsciiToBinary(tfMensagem3.getText()));
-    }//GEN-LAST:event_tfMensagem3AtualizaInputBinario
-
-    private void tfPolinomio3validaPolinomio(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPolinomio3validaPolinomio
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfPolinomio3validaPolinomio
-
-    private void executarHammingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_executarHammingActionPerformed
-        String aux = msgEmBits3.getText();
-        String array[] = new String[aux.length()];
-        for (int i = 0; i < aux.length(); i++) {
-            array[i] = String.valueOf(aux.charAt(i));
-        }
-
-        ham.calcularHamming(array);
-    }//GEN-LAST:event_executarHammingActionPerformed
-
-    private void tfMensagem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfMensagem3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfMensagem3ActionPerformed
-
-    private void tfGrauPolinomio3validaGrauPolinomio(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfGrauPolinomio3validaGrauPolinomio
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfGrauPolinomio3validaGrauPolinomio
+    private void tfMensagemAtualizaInputBinario(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfMensagemAtualizaInputBinario
+        msgEmBits.setText(util.AsciiToBinary(tfMensagem.getText()));
+    }//GEN-LAST:event_tfMensagemAtualizaInputBinario
 
     public static void main(String args[]) {
 
@@ -1214,7 +1209,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel pOutput;
     private javax.swing.JPanel pOutput1;
     private javax.swing.JPanel pOutput2;
-    private javax.swing.JPanel pRed_Solomon;
     private javax.swing.JTextField tfGrauPolinomio3;
     private javax.swing.JTextField tfMensagem;
     private javax.swing.JTextField tfMensagem3;
