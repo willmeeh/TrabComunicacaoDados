@@ -910,35 +910,79 @@ public class TelaPrincipal extends javax.swing.JFrame {
         StringBuilder hammin = hamming.codificar(array);
         txtBitsEnvioHamming.setText(hammin.toString());
         txtMensagemRecebidaHamming.setText(hammin.toString());
-        hammin.deleteCharAt(5);
-        hammin.insert(5, "0");
+
+        if (isSimularErro4.isSelected()) {
+            String msg;
+
+            StringBuilder msgAntiga = new StringBuilder();
+
+            msgAntiga = hammin;
+
+            hammin = new StringBuilder();
+
+            msg = hamming.gerarErroFromHamming(msgAntiga.toString());
+            hammin.append(msg);
+        }
+
         String mensagemDecodificada = hamming.decodificar(hammin);
         txtMensagemDecodificadaASCII.setText(mensagemDecodificada);
 
         StringBuilder erro = hamming.detectaCorrigeErro(hammin);
         int contador = 0;
         
+        // se a sequencia de bits é 000 entao n tem erro
         boolean auxiliar = true;
-        while(auxiliar && contador<erro.length() ){
-            if(erro.charAt(contador)=='1'){
+        while (auxiliar && contador < erro.length()) {
+            if (erro.charAt(contador) == '1') {
                 auxiliar = false;
             }
             contador++;
         }
-        
-        if(auxiliar == true){
+
+        String teste = hammin.toString();
+
+        int binarioDecimal = 0;
+        if (auxiliar == true) {
             txtResultTransmissao2.setText("Mensagem Transmitida sem erros!");
-        }else{
-            int binarioDecimal = Integer.parseInt(erro.toString(), 2);
-            binarioDecimal = binarioDecimal-1;
+            txtRestoXorRecebido2.setText("");
+        } else {
+            binarioDecimal = Integer.parseInt(erro.toString(), 2);
+            binarioDecimal = binarioDecimal - 1;
             String numeroBinario = Integer.toBinaryString(binarioDecimal);
-            txtRestoXorRecebido2.setText(numeroBinario+"="+binarioDecimal);
+            txtRestoXorRecebido2.setText(numeroBinario + "=" + binarioDecimal);
             txtResultTransmissao2.setText("Mensagem Transmitida com erros!");
         }
-        
-        
-        
-        
+        char[] mensagemCorrigida = null;
+
+        String resultadoMsgCorrigida = "";
+        if (!auxiliar == true) {
+            mensagemCorrigida = teste.toCharArray();
+            String bitAdicionado = null;
+            // binarioDecimal indice que foi descoberto o erro
+            if (mensagemCorrigida[binarioDecimal] == '0') {
+                mensagemCorrigida[binarioDecimal] = '1';
+                bitAdicionado = "1";
+            } else if (mensagemCorrigida[binarioDecimal] == '1') {
+                mensagemCorrigida[binarioDecimal] = '0';
+                bitAdicionado = "0";
+            }
+
+            for (int i = 0; i < mensagemCorrigida.length; i++) {
+                resultadoMsgCorrigida += mensagemCorrigida[i];
+            }
+            StringBuilder msgToAscii = new StringBuilder();
+            msgToAscii.append(resultadoMsgCorrigida);
+
+            String mensagemDecodificada2 = hamming.decodificar(msgToAscii);
+
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro na mensagem: " + teste + " na posição: " + binarioDecimal
+                    + " Porem a mensagem foi corrigida adicionado na posição: " + binarioDecimal + " o bit " + bitAdicionado
+                    + " \nResultando em: " + resultadoMsgCorrigida
+                    + "\nMensage convertida para ASCII: " + mensagemDecodificada2);
+
+        }
+//        +String.valueOf(resultadoMsgCorrigida)
+
     }//GEN-LAST:event_executarHammingActionPerformed
 
     private void tfMensagem3AtualizaInputBinario(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfMensagem3AtualizaInputBinario

@@ -7,6 +7,7 @@ package br.unisc.trabalho2.tecnicas;
 
 import br.unisc.trabalho2.util.MetodosUteis;
 import java.util.LinkedList;
+import java.util.Random;
 import java.util.Vector;
 
 /**
@@ -122,7 +123,7 @@ public class Hamming {
         return mensagem;
 
     }
-
+    // remove / retira todos os bits que o indice é potencia de 2
     public String decodificar(StringBuilder mensagemEmBinario) {
         int messageLenght = mensagemEmBinario.length();
         StringBuilder mensagemDecodificada = new StringBuilder();
@@ -202,6 +203,28 @@ public class Hamming {
 
         return bitsError;
 
+    }
+    
+    //Troca um bit da mensagem para simular o erro
+    public String gerarErroFromHamming(String msg) {
+        char[] msgCharArray = msg.toCharArray();
+
+        Random numRandomico = new Random();
+
+        int num = numRandomico.nextInt(msg.length());
+
+        if (msgCharArray[num] == '1') {
+            msgCharArray[num] = '0';
+        } else if (msgCharArray[num] == '0') {
+            msgCharArray[num] = '1';
+        }
+        String result = "";
+        for (int i = 0; i < msgCharArray.length; i++) {
+            result += msgCharArray[i];
+        }
+        System.out.println("msgCharArray" + msgCharArray.toString());
+        System.out.println("result" + result);
+        return result;
     }
 
 }
