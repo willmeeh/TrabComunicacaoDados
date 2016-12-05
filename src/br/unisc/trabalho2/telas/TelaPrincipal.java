@@ -123,19 +123,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jScrollPane21 = new javax.swing.JScrollPane();
         msgEmBits3 = new javax.swing.JTextArea();
         jLabel35 = new javax.swing.JLabel();
-        tfPolinomio3 = new javax.swing.JTextField();
-        jLabel36 = new javax.swing.JLabel();
-        jLabel37 = new javax.swing.JLabel();
-        tfGrauPolinomio3 = new javax.swing.JTextField();
         executarHamming = new javax.swing.JButton();
         isSimularErro4 = new javax.swing.JCheckBox();
         pOutput2 = new javax.swing.JPanel();
-        jScrollPane22 = new javax.swing.JScrollPane();
-        txtRestoXorTransmitido1 = new javax.swing.JTextArea();
-        jLabel38 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
         jScrollPane23 = new javax.swing.JScrollPane();
-        txtBitsEnviados1 = new javax.swing.JTextArea();
+        txtBitsEnvioHamming = new javax.swing.JTextArea();
         jLabel40 = new javax.swing.JLabel();
         txtMe2 = new javax.swing.JPanel();
         jLabel41 = new javax.swing.JLabel();
@@ -147,9 +140,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel43 = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
         jScrollPane26 = new javax.swing.JScrollPane();
-        txtMensagemRecebida2 = new javax.swing.JTextArea();
+        txtMensagemRecebidaHamming = new javax.swing.JTextArea();
         jScrollPane27 = new javax.swing.JScrollPane();
-        txtAsciiEnviado2 = new javax.swing.JTextArea();
+        txtMensagemDecodificadaASCII = new javax.swing.JTextArea();
         jLabel45 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -688,25 +681,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jLabel35.setText("Mensagem em bits");
 
-        tfPolinomio3.setText("101101");
-        tfPolinomio3.setToolTipText("Informe o polinomio em bits");
-        tfPolinomio3.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                tfPolinomio3validaPolinomio(evt);
-            }
-        });
-
-        jLabel36.setText("Polinomio em Bits");
-
-        jLabel37.setText("Grau do polinomio");
-
-        tfGrauPolinomio3.setText("5");
-        tfGrauPolinomio3.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                tfGrauPolinomio3validaGrauPolinomio(evt);
-            }
-        });
-
         executarHamming.setText("Executar");
         executarHamming.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -725,14 +699,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGroup(pInput4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tfMensagem3)
                     .addComponent(jScrollPane21, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
-                    .addComponent(tfPolinomio3)
-                    .addComponent(tfGrauPolinomio3)
                     .addGroup(pInput4Layout.createSequentialGroup()
                         .addGroup(pInput4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel34)
                             .addComponent(jLabel35)
-                            .addComponent(jLabel36)
-                            .addComponent(jLabel37)
                             .addGroup(pInput4Layout.createSequentialGroup()
                                 .addComponent(executarHamming, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -751,32 +721,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel35)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane21, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel36)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfPolinomio3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel37)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfGrauPolinomio3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(51, 51, 51)
                 .addGroup(pInput4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(executarHamming)
                     .addComponent(isSimularErro4))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        txtRestoXorTransmitido1.setColumns(20);
-        txtRestoXorTransmitido1.setRows(5);
-        jScrollPane22.setViewportView(txtRestoXorTransmitido1);
-
-        jLabel38.setText("Resto da operacao XOR");
-
         jLabel39.setText("Bits enviados:");
 
-        txtBitsEnviados1.setColumns(20);
-        txtBitsEnviados1.setRows(5);
-        jScrollPane23.setViewportView(txtBitsEnviados1);
+        txtBitsEnvioHamming.setColumns(20);
+        txtBitsEnvioHamming.setRows(5);
+        jScrollPane23.setViewportView(txtBitsEnvioHamming);
 
         jLabel40.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel40.setText("Transmissor");
@@ -788,13 +744,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(pOutput2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pOutput2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane22, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
-                    .addComponent(jScrollPane23)
+                    .addComponent(jScrollPane23, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
                     .addGroup(pOutput2Layout.createSequentialGroup()
                         .addGroup(pOutput2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel38)
-                            .addComponent(jLabel39)
-                            .addComponent(jLabel40))
+                            .addComponent(jLabel40)
+                            .addComponent(jLabel39))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -803,18 +757,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(pOutput2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel40)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel38)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane22, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel39)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(26, 26, 26)
                 .addComponent(jScrollPane23, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel41.setText("Resto da operacao XOR");
+        jLabel41.setText("Bit error");
 
         txtRestoXorRecebido2.setColumns(20);
         txtRestoXorRecebido2.setRows(5);
@@ -831,13 +781,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jLabel44.setText("Mensagem Recebida");
 
-        txtMensagemRecebida2.setColumns(20);
-        txtMensagemRecebida2.setRows(5);
-        jScrollPane26.setViewportView(txtMensagemRecebida2);
+        txtMensagemRecebidaHamming.setColumns(20);
+        txtMensagemRecebidaHamming.setRows(5);
+        jScrollPane26.setViewportView(txtMensagemRecebidaHamming);
 
-        txtAsciiEnviado2.setColumns(20);
-        txtAsciiEnviado2.setRows(5);
-        jScrollPane27.setViewportView(txtAsciiEnviado2);
+        txtMensagemDecodificadaASCII.setColumns(20);
+        txtMensagemDecodificadaASCII.setRows(5);
+        jScrollPane27.setViewportView(txtMensagemDecodificadaASCII);
 
         jLabel45.setText("Mensagem decodificado para ASCII");
 
@@ -947,6 +897,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jTabbedPane1.getAccessibleContext().setAccessibleName("Abas");
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void executarHammingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_executarHammingActionPerformed
@@ -957,18 +908,50 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
 
         StringBuilder hammin = hamming.codificar(array);
+        txtBitsEnvioHamming.setText(hammin.toString());
+        txtMensagemRecebidaHamming.setText(hammin.toString());
+        hammin.deleteCharAt(5);
+        hammin.insert(5, "0");
+        String mensagemDecodificada = hamming.decodificar(hammin);
+        txtMensagemDecodificadaASCII.setText(mensagemDecodificada);
+
+        StringBuilder erro = hamming.detectaCorrigeErro(hammin);
+        int contador = 0;
+        
+        boolean auxiliar = true;
+        while(auxiliar && contador<erro.length() ){
+            if(erro.charAt(contador)=='1'){
+                auxiliar = false;
+            }
+            contador++;
+        }
+        
+        if(auxiliar == true){
+            txtResultTransmissao2.setText("Mensagem Transmitida sem erros!");
+        }else{
+            int binarioDecimal = Integer.parseInt(erro.toString(), 2);
+            binarioDecimal = binarioDecimal-1;
+            String numeroBinario = Integer.toBinaryString(binarioDecimal);
+            txtRestoXorRecebido2.setText(numeroBinario+"="+binarioDecimal);
+            txtResultTransmissao2.setText("Mensagem Transmitida com erros!");
+        }
+        
+        
+        
+        
     }//GEN-LAST:event_executarHammingActionPerformed
-
-    private void tfGrauPolinomio3validaGrauPolinomio(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfGrauPolinomio3validaGrauPolinomio
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfGrauPolinomio3validaGrauPolinomio
-
-    private void tfPolinomio3validaPolinomio(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPolinomio3validaPolinomio
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfPolinomio3validaPolinomio
 
     private void tfMensagem3AtualizaInputBinario(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfMensagem3AtualizaInputBinario
         msgEmBits3.setText(util.AsciiToBinary(tfMensagem3.getText()));
+
+        String aux = msgEmBits3.getText();
+        String array[] = new String[aux.length()];
+        for (int i = 0; i < aux.length(); i++) {
+            array[i] = String.valueOf(aux.charAt(i));
+        }
+
+        StringBuilder hammin = hamming.codificar(array);
+        txtBitsEnvioHamming.setText(hammin.toString());
     }//GEN-LAST:event_tfMensagem3AtualizaInputBinario
 
     private void tfMensagem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfMensagem3ActionPerformed
@@ -1154,9 +1137,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
@@ -1180,7 +1160,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane20;
     private javax.swing.JScrollPane jScrollPane21;
-    private javax.swing.JScrollPane jScrollPane22;
     private javax.swing.JScrollPane jScrollPane23;
     private javax.swing.JScrollPane jScrollPane24;
     private javax.swing.JScrollPane jScrollPane25;
@@ -1208,33 +1187,30 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel pOutput;
     private javax.swing.JPanel pOutput1;
     private javax.swing.JPanel pOutput2;
-    private javax.swing.JTextField tfGrauPolinomio3;
     private javax.swing.JTextField tfMensagem;
     private javax.swing.JTextField tfMensagem3;
     private javax.swing.JTextField tfPalavra1CH;
     private javax.swing.JTextField tfPalavra2CH;
     private javax.swing.JTextField tfPolinomio;
-    private javax.swing.JTextField tfPolinomio3;
     private javax.swing.JTextArea txtAsciiEnviado;
-    private javax.swing.JTextArea txtAsciiEnviado2;
     private javax.swing.JTextArea txtAsciiEnviadoChecksum;
     private javax.swing.JTextArea txtBitsEnviados;
-    private javax.swing.JTextArea txtBitsEnviados1;
+    private javax.swing.JTextArea txtBitsEnvioHamming;
     private javax.swing.JTextArea txtBitsInvertidos;
     private javax.swing.JTextArea txtComparacaoChecksumEnviado;
     private javax.swing.JPanel txtMe;
     private javax.swing.JPanel txtMe1;
     private javax.swing.JPanel txtMe2;
+    private javax.swing.JTextArea txtMensagemDecodificadaASCII;
     private javax.swing.JTextArea txtMensagemRecebida;
-    private javax.swing.JTextArea txtMensagemRecebida2;
     private javax.swing.JTextArea txtMensagemRecebidaCheckSum;
+    private javax.swing.JTextArea txtMensagemRecebidaHamming;
     private javax.swing.JTextArea txtMsgEnviadaCheckSum;
     private javax.swing.JTextArea txtPalavra1Checksum;
     private javax.swing.JTextArea txtPalavra2Checksum;
     private javax.swing.JTextArea txtRestoXorRecebido;
     private javax.swing.JTextArea txtRestoXorRecebido2;
     private javax.swing.JTextArea txtRestoXorTransmitido;
-    private javax.swing.JTextArea txtRestoXorTransmitido1;
     private javax.swing.JTextArea txtResultTransmissao;
     private javax.swing.JTextArea txtResultTransmissao2;
     private javax.swing.JTextArea txtResultTransmissaoChecksum;

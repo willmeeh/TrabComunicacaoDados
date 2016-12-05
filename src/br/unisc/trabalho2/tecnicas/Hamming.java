@@ -59,7 +59,7 @@ public class Hamming {
                 String numeroBinario = Integer.toBinaryString(aux);
                 paridade = new StringBuilder();
                 paridade.append(numeroBinario);
-
+                //adicona 0 para ficar parelho
                 while (paridade.length() < numeroDeParidades) {
                     paridade.reverse();
                     paridade.append("0");
@@ -120,6 +120,87 @@ public class Hamming {
         mensagem.reverse();
 
         return mensagem;
+
+    }
+
+    public String decodificar(StringBuilder mensagemEmBinario) {
+        int messageLenght = mensagemEmBinario.length();
+        StringBuilder mensagemDecodificada = new StringBuilder();
+        int index = 0;
+        while (index < messageLenght) {
+            if (!metodo.potenciaDeDois(index + 1)) {
+                mensagemDecodificada.append(mensagemEmBinario.charAt(index));
+            }
+            index++;
+        }
+        return metodo.converteBinarioParaAscii(mensagemDecodificada);
+    }
+
+    public StringBuilder detectaCorrigeErro(StringBuilder mensagem) {
+//        mensagem.deleteCharAt(6);
+//        mensagem.insert(6, "1");
+        LinkedList<StringBuilder> listaDeParidades = new LinkedList<StringBuilder>();
+        StringBuilder paridade;
+
+        //conta a quantidade de bits de controle = 1;
+        int numeroBitsControle= 0;
+        for (int i = 0; i < mensagem.length(); i++) {
+            if (mensagem.charAt(i) == '1') {
+                numeroBitsControle++;
+            }
+        }
+        // pega todas as posicoes que o bit é 1 e converte p/ binario
+        for (int i = 0; i < mensagem.length(); i++) {
+            if (mensagem.charAt(i) == '1') {
+                int aux = i + 1;
+                String numeroBinario = Integer.toBinaryString(aux);
+                paridade = new StringBuilder();
+                paridade.append(numeroBinario);
+                //adicona 0 para ficar parelho
+                while (paridade.length() < numeroBitsControle) {
+                    paridade.reverse();
+                    paridade.append("0");
+                    paridade.reverse();
+                }
+                listaDeParidades.add(paridade);
+                System.out.println("posicao: " + aux + "=" + paridade.toString());
+            }
+        }
+
+        StringBuilder numerosParaVerificarParidade;
+        StringBuilder bits = new StringBuilder();
+        StringBuilder bitsError = new StringBuilder();
+
+        int x = 0;
+        // while que pega os bits de controle
+        while (x < listaDeParidades.get(0).length()) {
+            // monta a coluna dos bits
+            for (int i = 0; i < listaDeParidades.size(); i++) {
+                numerosParaVerificarParidade = new StringBuilder();
+                numerosParaVerificarParidade.append(listaDeParidades.get(i));
+                bits.append(numerosParaVerificarParidade.charAt(x));
+            }
+
+            //for para contar o numero de 1s
+            int num = 0;
+            for (int j = 0; j < bits.length(); j++) {
+                if (bits.charAt(j) == '1') {
+                    num++;
+                }
+            }
+            // verifica se o numero de 1s é par
+            if (num % 2 == 0) {
+                bitsError.append("0");
+            } else {
+                bitsError.append("1");
+            }
+            //zera a string
+            int tamanho = bits.length();
+            bits.delete(0, tamanho);
+            x++;
+        }
+
+        return bitsError;
 
     }
 

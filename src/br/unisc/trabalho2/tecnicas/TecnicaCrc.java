@@ -24,7 +24,7 @@ public class TecnicaCrc {
         String fromMsg = msg.substring(0, dividendo.length());
         String result = null;
 
-        for (int i = fromMsg.length(); i < msg.length(); i++) {
+        for (int i = dividendo.length(); i < msg.length(); i++) {
             result = fazerXor(fromMsg, dividendo);
             //a mensagem recebe o resultado, pulando o primeiro bit, ate o tamanho do resultado, e acrescenta
             //o proximo bit, no final da mensagem, de acordo com o percorrer do for
