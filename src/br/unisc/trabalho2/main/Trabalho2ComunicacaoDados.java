@@ -11,8 +11,6 @@ import java.util.ArrayList;
 public class Trabalho2ComunicacaoDados {
 
     public static void main(String[] args) {
-        Hamming a = new Hamming();
-        a.potenciadeDois(8);
 //        
 //        ArrayList<String> listaDividendos = new ArrayList<>();
 //        

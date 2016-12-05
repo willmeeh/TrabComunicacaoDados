@@ -116,5 +116,18 @@ public class MetodosUteis {
 
         return result;
     }
+    
+    public static boolean potenciaDeDois(int number) {
+        int index = 0;
+
+        while (index <= number) {
+            if (Math.pow(2, index) == number) {
+                return true;
+            }
+            index++;
+        }
+        return false;
+
+    }
 
 }

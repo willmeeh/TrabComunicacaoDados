@@ -21,7 +21,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     TecnicaCrc crc = new TecnicaCrc();
     TecnicaChecksum checksum = new TecnicaChecksum();
-    Hamming ham = new Hamming();
+    Hamming hamming = new Hamming();
 
     public TelaPrincipal() {
         initComponents();
@@ -956,7 +956,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             array[i] = String.valueOf(aux.charAt(i));
         }
 
-        ham.calcularHamming(array);
+        StringBuilder hammin = hamming.codificar(array);
     }//GEN-LAST:event_executarHammingActionPerformed
 
     private void tfGrauPolinomio3validaGrauPolinomio(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfGrauPolinomio3validaGrauPolinomio
@@ -980,7 +980,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_tfPalavra2CHAtualizaInputBinario
 
     private void executarChecksumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_executarChecksumActionPerformed
-        if (!txtPalavra1Checksum.getText().equals("")  && txtPalavra1Checksum.getText() != null) {
+        if (!txtPalavra1Checksum.getText().equals("") && txtPalavra1Checksum.getText() != null) {
             if (!txtPalavra2Checksum.getText().equals("") && txtPalavra2Checksum.getText() != null) {
 
                 String palavra1Checksum = txtPalavra1Checksum.getText();
