@@ -9,27 +9,6 @@ import java.util.regex.Pattern;
  */
 public class TecnicaChecksum {
 
-//    public String fazSoma(String palavra1, String palavra2) {
-//
-//        long p1Decimal;
-//        long p2Decimal;
-//
-//        long resultadoSomaDecimal;
-//
-//        String resultadoSomaString;
-//
-//        //converte a palavra 1 de decimal para binario
-//        p1Decimal = Integer.parseInt(palavra1, 2);
-//        //converte a palavra 2 de decimal para binario
-//        p2Decimal = Integer.parseInt(palavra2, 2);
-//
-//        //soma a palavra 1 com a palavra 2
-//        resultadoSomaDecimal = p1Decimal + p2Decimal;
-//
-//        //converte o resultado da soma para binario
-//        resultadoSomaString = Long.toBinaryString((int) resultadoSomaDecimal);
-//        return resultadoSomaString;
-//    }
     public String fazSoma(String palavra1, String palavra2) {
         palavra1.trim();
         palavra2.trim();
@@ -41,7 +20,7 @@ public class TecnicaChecksum {
         //para poder fazer a soma em binario
         if (palavra1.length() > palavra2.length()) {
 
-            String aux = StrZeroDireita(palavra1.length(), palavra2.length());
+            String aux = StrZeroEsquerda(palavra1.length(), palavra2.length());
             palavra2 = aux + palavra2;
 
             System.out.println("p2" + palavra2);
@@ -50,7 +29,7 @@ public class TecnicaChecksum {
             //para poder fazer a soma em binario
         } else if (palavra2.length() > palavra1.length()) {
 
-            String aux = StrZeroDireita(palavra2.length(), palavra1.length());
+            String aux = StrZeroEsquerda(palavra2.length(), palavra1.length());
             palavra1 = aux + palavra1;
 
             System.out.println("p1" + palavra1);
@@ -119,7 +98,7 @@ public class TecnicaChecksum {
         return bitsInvertidos.toString();
     }
 
-    public static String StrZeroDireita(int palavraMaior, int palavraMenor) {
+    public static String StrZeroEsquerda(int palavraMaior, int palavraMenor) {
         //Obtema  diferenca entre as duas palavras
         int diferenca = palavraMaior - palavraMenor;
         String aux = "";
@@ -132,7 +111,7 @@ public class TecnicaChecksum {
         return aux;
     }
 
-    //Percorre todo o resto do checksum e verifica todos os bits sao 1s,
+    //Percorre o checksum e verifica todos os bits sao 1s,
     //retornando uma mensagem erro ou de sucesso
     public String verivicaErro(String msg) {
 
@@ -168,11 +147,12 @@ public class TecnicaChecksum {
         String msgSeparada[] = separaMensagem(msgEnviadaChecksum);
 
         //Calcula novamente o checksum da mensagem recebida
-        String resultSoma = fazSoma(msgSeparada[0], msgSeparada[1]);
+        String checksumAntigo = fazSoma(msgSeparada[0], msgSeparada[1]);
 
-        String result = fazSoma(msgSeparada[2], resultSoma);
+        //faz a soma da do checksum antigo com o checksum gerado da mensagem recebida
+        String checksumNovo = fazSoma(msgSeparada[2], checksumAntigo);
 
-        return result;
+        return checksumNovo;
     }
 
     public String[] separaMensagem(String msgEnviadaChecksum) {

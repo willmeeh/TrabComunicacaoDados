@@ -24,26 +24,34 @@ public class TecnicaCrc {
         String fromMsg = msg.substring(0, dividendo.length());
         String result = null;
 
-        for (int i = 6; i < msg.length(); i++) {
+        for (int i = fromMsg.length(); i < msg.length(); i++) {
             result = fazerXor(fromMsg, dividendo);
+            //a mensagem recebe o resultado, pulando o primeiro bit, ate o tamanho do resultado, e acrescenta
+            //o proximo bit, no final da mensagem, de acordo com o percorrer do for
+            //o primeiro bit e pulado por nao ser mais necessario para o proximo calculo
             fromMsg = result.substring(1, result.length()) + msg.charAt(i);
         }
+        //o xor e calculado novamente aqui por conta do for ter terminado 
+        //antes de se calcular a utima vez o xor
         result = fazerXor(fromMsg, dividendo);
+        
+        //
         return result.substring(1, result.length());
     }
 
     //OPERAÇÃO DO XOR 
     private String fazerXor(String fromMsg, String polinomio) {
         String retornaResult = new String();
+        
+        //se a operacao inicia com 0
         if (fromMsg.startsWith("0")) {
             for (int i = 0; i < fromMsg.length(); i++) {
+                //
                 retornaResult += Character.getNumericValue(fromMsg.charAt(i)) ^ 0;
-                System.out.println("Com:" + Character.getNumericValue(fromMsg.charAt(i)) + " e 0 = " + retornaResult);
             }
         } else {
             for (int i = 0; i < fromMsg.length(); i++) {
                 retornaResult += Character.getNumericValue(fromMsg.charAt(i)) ^ Character.getNumericValue(polinomio.charAt(i));
-                System.out.println("Com:" + Character.getNumericValue(fromMsg.charAt(i)) + " e " + Character.getNumericValue(polinomio.charAt(i)) + " = " + retornaResult);
             }
         }
 
@@ -81,17 +89,17 @@ public class TecnicaCrc {
         Random numRandomico = new Random();
 
         int num = numRandomico.nextInt(msg.length());
-
+        
         if (msgCharArray[num] == '1') {
             msgCharArray[num] = '0';
         } else {
             msgCharArray[num] = '1';
         }
         String result = "";
+        
         for (int i = 0; i < msgCharArray.length; i++) {
             result += msgCharArray[i];
         }
-        System.out.println("msgCharArray" + msgCharArray.toString());
         System.out.println("result" + result);
         return result;
     }

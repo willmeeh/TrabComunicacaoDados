@@ -410,7 +410,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         );
         pCrcLayout.setVerticalGroup(
             pCrcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("CRC", pCrc);
@@ -505,7 +505,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGroup(pInput3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(executarChecksum)
                     .addComponent(isSimularErroChecksum))
-                .addGap(0, 11, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         txtResultadoSomaChecksum.setColumns(20);
@@ -923,7 +923,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         );
         pHammingLayout.setVerticalGroup(
             pHammingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 338, Short.MAX_VALUE)
+            .addGap(0, 375, Short.MAX_VALUE)
             .addGroup(pHammingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pHammingLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -1013,7 +1013,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     txtMensagemRecebidaCheckSum.setText(msgEnviadaChecksum);
 
                     checkSumVerificado = checksum.calculoVerificacaoMensagem(msgEnviadaChecksum);
-
                     txtComparacaoChecksumEnviado.setText(checkSumVerificado);
                 }
 
